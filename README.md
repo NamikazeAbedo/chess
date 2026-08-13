@@ -1,6 +1,3 @@
-Here's a professional description for your chess game repository:
-
----
 
 # Terminal Chess - C++ Two-Player Game
 
@@ -54,5 +51,3 @@ This project was built as a learning exercise to practice:
 - [ ] Time controls
 
 ---
-
-Feel free to adjust the description based on what features you've actually implemented! Would you like me to add or modify any section?
