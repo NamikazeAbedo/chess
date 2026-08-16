@@ -28,6 +28,7 @@ A terminal-based chess game built entirely in C++ that allows two players to pla
    ./chess
    ```
 4. Follow the on-screen prompts to make your moves (e.g., "e2 e4")
+      -or you can use numbers from 1 to 64 why bc why not 0]0/(and it might not work check the the the list of the features)
 
 ## Requirements
 
@@ -37,10 +38,19 @@ A terminal-based chess game built entirely in C++ that allows two players to pla
 ## Why This Project?
 
 This project was built as a learning exercise to practice:
+
 - Object-oriented programming in C++
 - Game logic implementation
 - Data structures and algorithms
 - Clean code practices
+  
+## Features
+
+- [X] display in terminal
+- [X] All pieces with movement rules
+- [ ] Special moves
+- [ ] Check/checkmate detection
+- [ ] simple menu
 
 ## Future Improvements
 
