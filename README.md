@@ -1,4 +1,4 @@
-
+<img width="1920" height="1054" alt="image" src="https://github.com/user-attachments/assets/67e200bb-b0bd-4194-90a5-984bc12b803a" />
 # Terminal Chess - C++ Two-Player Game
 
 A terminal-based chess game built entirely in C++ that allows two players to play chess in the command line interface. This is a small, self-contained project focused on implementing core chess logic without external dependencies.
@@ -28,7 +28,7 @@ A terminal-based chess game built entirely in C++ that allows two players to pla
    ./chess
    ```
 4. Follow the on-screen prompts to make your moves (e.g., "e2 e4")
-      -or you can use numbers from 1 to 64 why bc why not 0]0/(and it might not work check the the the list of the features)
+ - or you can use numbers from 1 to 64 why bc why not 0]0/(and it might not work check the the the list of the features)
 
 ## Requirements
 
@@ -51,6 +51,8 @@ This project was built as a learning exercise to practice:
 - [ ] Special moves
 - [ ] Check/checkmate detection
 - [ ] simple menu
+- [ ] Move input using algebraic notation (e.g., e2e4)
+
 
 ## Future Improvements
 
