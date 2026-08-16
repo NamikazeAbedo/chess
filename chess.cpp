@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <vector>
+
 
 using namespace std;
 
@@ -11,7 +11,7 @@ using namespace std;
     int row_from=0 , col_from=0 ;
     int row_to=0 , col_to=0 ;
     int take_from=0, take_to=0;
-         string paice ="\0";
+      string paice ="\0";
 
 
 
@@ -21,7 +21,6 @@ const string Rook_W = " ♜";
 
 const string King_D = " ♔";
 const string King_W = " ♚";
-
 
 
 const string Queen_D = " ♕";
@@ -53,23 +52,59 @@ bool check_knight_moves();
 bool on_board(int row , int col);
 bool check_pawn_moves(); 
 bool is_opponent_piece(int row, int col) ;
+bool Special_moves();
+bool castling();
+bool en_passant();
+bool promotion();
 
-// 1. Scope Yo·ur Terminal Chess
+
+//the object: Terminal Chess
 
 
 //     Features to include:
 
-//         Standard chess board display in terminal ✅
+    /*      // Standard chess board display in terminal ✅
+//time day 1 note 1 > it easy i feel can do it just in 30 min that 
+//progress  also i have plan  this time this week i wiil make fire 
+// in termenal >0<
+*/
 
-//         All pieces with movement rules  ✅
+   /*      // All pieces with movement rules  ✅
+
+//time day 2 - note 1> fuck you fuck me fuck programming it 
+// hared i bearly make the logic for the movemt i weast
+// about a 4 h in this the problm is i couldnt use
+//  the e9,d6 a1 in to move  my piese o i mange to use 
+// %/ with the anothere boeard  and display it in the boead ^&^
+// and that make me cunfused and waste so much time 
+
+
+//time day 3 - note 2 >this shit is hared i did no progress
+// all the day i watch  other code in githup an no want do it 
+// like me they use gfc lib r game lib i and if i want to add this e3,e5..
+// i need math and...and eljaber i bad at it ;-;
+
+
+//time day 4 - note 3> thx chinlike me they use gfc lib r game
+//  liba for deepseek it guided me in this bs code and make unerstaned
+//  that im stupid i didnt say that im notusing ai in this one 
+//   but we makeprogress i can say that i made about 60 % of this code
+//  and that cool  but i need to reead maybe tomoroe 
+*/ 
 
 //         Special moves (castling, en passant, promotion)
+
+// time day 5 and 6 - note 1> i spend the day reading my code bc i forget 
+// the most of it 
 
 //         Check/checkmate detection
 
 //         Move input using algebraic notation (e.g., e2e4)
 
+
 //     Features to skip (for now):
+
+//         Move history/undo
 
 //         AI opponent
 
@@ -77,24 +112,19 @@ bool is_opponent_piece(int row, int col) ;
 
 //         Move history/undo
 
+
+
 int main() {
     int turns = 1;
     init_board();
-    board_game();
     
     while (true) {
         paice_movement(&turns);
         
-        // Optional: Add quit option
-        char quit;
-        cout << "Press 'q' to quit, any other key to continue: ";
-        cin >> quit;
-        if (quit == 'q' || quit == 'Q') {
-            break;
-        }
     }
     return 0;
 }
+// the hared worker but the most lazyest function and in the same time bone back of my work it like me in so many way but much better 
 void init_board() {
     // Fill board with empty squares (alternating colors)
     for (int i = 0; i < 8; i++) {
@@ -106,44 +136,84 @@ void init_board() {
             }
         }
     }
-    
     // Place all pieces
-    board[0][0] = Rook_D;
-    board[0][1] = Knight_D;
-    board[0][2] = Bishop_D;
-    board[0][3] = King_D;
-    board[0][4] = Queen_D;
-    board[0][5] = Bishop_D;
-    board[0][6] = Knight_D;
-    board[0][7] = Rook_D;
+board[0][0] = Rook_D;
+board[0][1] = Knight_D;
+board[0][2] = Bishop_D;
+board[0][3] = King_D;
+board[0][4] = Queen_D;
+board[0][5] = Bishop_D;
+board[0][6] = Knight_D;
+board[0][7] = Rook_D;
     
-    board[1][0] = Pawn_D;
-    board[1][1] = Pawn_D;
-    board[1][2] = Pawn_D;
-    board[1][3] = Pawn_D;
-    board[1][4] = Pawn_D;
-    board[1][5] = Pawn_D;
-    board[1][6] = Pawn_D;
-    board[1][7] = Pawn_D;
+board[1][0] = Pawn_D;
+board[1][1] = Pawn_D;
+board[1][2] = Pawn_D;
+board[1][3] = Pawn_D;
+board[1][4] = Pawn_D;
+board[1][5] = Pawn_D;
+board[1][6] = Pawn_D;
+board[1][7] = Pawn_D;
     
-    board[7][0] = Rook_W;
-    board[7][1] = Knight_W;
-    board[7][2] = Bishop_W;
-    board[7][3] = King_W;
-    board[7][4] = Queen_W;
-    board[7][5] = Bishop_W;
-    board[7][6] = Knight_W;
-    board[7][7] = Rook_W;
+board[7][0] = Rook_W;
+board[7][1] = Knight_W;
+board[7][2] = Bishop_W;
+board[7][3] = King_W;
+board[7][4] = Queen_W;
+board[7][5] = Bishop_W;
+board[7][6] = Knight_W;
+board[7][7] = Rook_W;
     
-    board[6][0] = Pawn_W;
-    board[6][1] = Pawn_W;
-    board[6][2] = Pawn_W;
-    board[6][3] = Pawn_W;
-    board[6][4] = Pawn_W;
-    board[6][5] = Pawn_W;
-    board[6][6] = Pawn_W;
-    board[6][7] = Pawn_W;
+// Put a white pawn close to promotion (row 1, col 4)
+board[1][4] = Pawn_W;  // Overwrites the black pawn at row 1, col 4
+
+// And keep some black pawns on row 1
+board[1][0] = Pawn_D;
+board[1][1] = Pawn_D;
+board[1][2] = Pawn_D;
+board[1][3] = Pawn_D;
+// board[1][4] is now Pawn_W
+board[1][5] = Pawn_D;
+board[1][6] = Pawn_D;
+board[1][7] = Pawn_D;
+    // // Place all pieces
+    // board[0][0] = Rook_D;
+    // board[0][1] = Knight_D;
+    // board[0][2] = Bishop_D;
+    // board[0][3] = King_D;
+    // board[0][4] = Queen_D;
+    // board[0][5] = Bishop_D;
+    // board[0][6] = Knight_D;
+    // board[0][7] = Rook_D;
+    
+    // board[1][0] = Pawn_D;
+    // board[1][1] = Pawn_D;
+    // board[1][2] = Pawn_D;
+    // board[1][3] = Pawn_D;
+    // board[1][4] = Pawn_D;
+    // board[1][5] = Pawn_D;
+    // board[1][6] = Pawn_D;
+    // board[1][7] = Pawn_D;
+    
+    // board[7][0] = Rook_W;
+    // board[7][1] = Knight_W;
+    // board[7][2] = Bishop_W;
+    // board[7][3] = King_W;
+    // board[7][4] = Queen_W;
+    // board[7][5] = Bishop_W;
+    // board[7][6] = Knight_W;
+    // board[7][7] = Rook_W;
+    
+    // board[6][0] = Pawn_W;
+    // board[6][1] = Pawn_W;
+    // board[6][2] = Pawn_W;
+    // board[6][3] = Pawn_W;
+    // board[6][4] = Pawn_W;
+    // board[6][5] = Pawn_W;
+    // board[6][6] = Pawn_W;
+    // board[6][7] = Pawn_W;
 }
+// the game rule board,turns and othernstuff like the reprithing for the boared and checker
 
 void emrty_squer(){
      for (int i = 0; i < 8; i++) {
@@ -200,13 +270,17 @@ void paice_movement(int *turns) {
                     
                     // Check if the move is legal
                     if (legal_move(*turns)) {
+                        
                         // Move the piece
                         string place_swaper_pc = board[row_from][col_from];
                         string place_swaper_emty = board[row_to][col_to];
                         
                         board[row_from][col_from] = place_swaper_emty;
                         board[row_to][col_to] = place_swaper_pc;
+                        
+                        if  (Special_moves())  emrty_squer();
                         emrty_squer();
+                         
                         
                         // Increment turn counter only after successful move
                         (*turns)++;
@@ -218,7 +292,6 @@ void paice_movement(int *turns) {
                     }
 
 }
-// the game rule board,turns 
 void board_game() {
     
    
@@ -244,7 +317,9 @@ bool legal_move(int turns){
                             
                                 }
                                else if (paice == " ♗" || paice == " ♝") {
+                                //    if (Special_moves()){
                                     return check_bishop_moves();
+                                    //  }
                                 }
                               else if (paice == " ♕"|| paice == " ♛") {
                                     return (check_bishop_moves()||  check_rook_moves());
@@ -253,7 +328,9 @@ bool legal_move(int turns){
                                             return check_pawn_moves(); 
                                         }
                                 else if (paice == " ♔" || paice == " ♚") {
+                                        // if (Special_moves()){
                                             return check_king_moves(); 
+                                        // }
                                         }
                                 else if (paice == " ♘" || paice == " ♞") {
                                         return check_knight_moves();
@@ -482,3 +559,77 @@ bool check_knight_moves() {
     return false;
 }
 // check_qween_moves it just bishop and rook
+
+bool Special_moves(){
+
+         if(promotion()){
+          return true;
+         } 
+}
+bool castling(){}
+bool en_passant(){}
+bool promotion(){
+
+    int promotion_row= (paice == Pawn_W) ? 0 : (paice == Pawn_D)  ? 7 : -1 ;
+    int choose;
+  
+   
+        if (row_to == promotion_row ){
+         
+            cout << "enter the number of the paice that you want..."<< endl;
+           
+            if (paice == Pawn_W ){
+                cout << "1) Rook   ♜. "<< endl;
+                cout << "2) Queen  ♛."<< endl;
+                cout << "3) Bishop ♝."<< endl;
+                cout << "4) Knight ♞."<< endl;
+           
+           }
+            else if (paice == Pawn_D ){
+                cout << "1) Rook   ♖. "<< endl;
+                cout << "2) Queen  ♕."<< endl;
+                cout << "3) Bishop ♗."<< endl;
+                cout << "4) Knight ♘."<< endl;
+            }
+            cout << "what the promotion that you want";
+               cin >>choose;
+             switch (choose)
+             {
+             case 1:
+                if (paice== Pawn_W){
+                   board[row_to][col_to]=Rook_W;
+                }else board[row_to][col_to]=Rook_D;
+                
+                break;
+
+             case 2:
+                 if (paice== Pawn_W){
+                   board[row_to][col_to]=Queen_W;
+                }else board[row_to][col_to]=Queen_D;
+                break;
+
+             case 3:
+                 if (paice== Pawn_W){
+                   board[row_to][col_to]=Bishop_W;
+                }else board[row_to][col_to]=Bishop_D;
+                break;
+
+             case 4:
+                 if (paice== Pawn_W){
+                   board[row_to][col_to]=Knight_W;
+                }else board[row_to][col_to]=Knight_D;
+                break;
+
+             
+             default:
+                break;
+
+               
+             }
+          return true;
+      }
+   
+    
+    
+return false;
+}
